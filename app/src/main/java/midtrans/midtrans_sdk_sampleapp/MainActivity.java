@@ -3,6 +3,7 @@ package midtrans.midtrans_sdk_sampleapp;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +24,8 @@ import com.midtrans.sdk.uikit.SdkUIFlowBuilder;
 
 public class MainActivity extends AppCompatActivity implements TransactionFinishedCallback {
     private Button buttonUiKit, buttonDirectCreditCard, buttonDirectBcaVa, buttonDirectMandiriVa,
-            buttonDirectBniVa, buttonDirectAtmBersamaVa, buttonDirectPermataVa;
+            buttonDirectBniVa, buttonDirectAtmBersamaVa, buttonDirectPermataVa, buttonPayWithSnapToken;
+    private EditText editTextSnapToken;
 
 
     @Override
@@ -105,7 +107,8 @@ public class MainActivity extends AppCompatActivity implements TransactionFinish
         buttonDirectBniVa = (Button) findViewById(R.id.button_direct_bni_va);
         buttonDirectPermataVa = (Button) findViewById(R.id.button_direct_permata_va);
         buttonDirectAtmBersamaVa = (Button) findViewById(R.id.button_direct_atm_bersama_va);
-
+        buttonPayWithSnapToken = (Button) findViewById(R.id.button_snap_pay);
+        editTextSnapToken = (EditText) findViewById(R.id.edit_snaptoken);
     }
 
     private void initActionButtons() {
@@ -184,6 +187,15 @@ public class MainActivity extends AppCompatActivity implements TransactionFinish
             }
         });
 
+        buttonPayWithSnapToken.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String snaptokenValue = editTextSnapToken.getEditableText().toString();
+                if (snaptokenValue != null) {
+                    MidtransSDK.getInstance().startPaymentUiFlow(MainActivity.this, snaptokenValue);
+                }
+            }
+        });
     }
 
     private UIKitCustomSetting uiKitCustomSetting() {
