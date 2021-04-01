@@ -1,5 +1,7 @@
 package midtrans.midtrans_sdk_sampleapp;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -7,6 +9,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.midtrans.sdk.corekit.callback.CardRegistrationCallback;
 import com.midtrans.sdk.corekit.callback.TransactionFinishedCallback;
@@ -35,7 +39,11 @@ public class MainActivity extends AppCompatActivity implements TransactionFinish
         bindViews();
         initActionButtons();
         initMidtransSdk();
-
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
+                != PackageManager.PERMISSION_GRANTED) {
+            // We do not have this permission. Let's ask the user
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 101);
+        }
     }
 
     private TransactionRequest initTransactionRequest() {
