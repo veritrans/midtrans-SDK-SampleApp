@@ -14,7 +14,7 @@
 		DD1B64BE28B8946F00742EFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD1B64BD28B8946F00742EFE /* Assets.xcassets */; };
 		DD1B64C128B8946F00742EFE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD1B64BF28B8946F00742EFE /* LaunchScreen.storyboard */; };
 		DD1B64F028B9CABD00742EFE /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1B64EF28B9CABD00742EFE /* ResultViewController.swift */; };
-		DDA8D79428D9C32400655CCF /* MidtransKit in Frameworks */ = {isa = PBXBuildFile; productRef = DDA8D79328D9C32400655CCF /* MidtransKit */; };
+		DDB2AE6F290BB3F800A34129 /* MidtransKit in Frameworks */ = {isa = PBXBuildFile; productRef = DDB2AE6E290BB3F800A34129 /* MidtransKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDA8D79428D9C32400655CCF /* MidtransKit in Frameworks */,
+				DDB2AE6F290BB3F800A34129 /* MidtransKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,7 +105,7 @@
 			);
 			name = MidtransSpmSample;
 			packageProductDependencies = (
-				DDA8D79328D9C32400655CCF /* MidtransKit */,
+				DDB2AE6E290BB3F800A34129 /* MidtransKit */,
 			);
 			productName = "xc-sample-swift";
 			productReference = DD1B64B128B8946C00742EFE /* MidtransSpmSample.app */;
@@ -136,7 +136,7 @@
 			);
 			mainGroup = DD1B64A828B8946C00742EFE;
 			packageReferences = (
-				DDA8D79228D9C32400655CCF /* XCRemoteSwiftPackageReference "Veritrans-ios-sdk" */,
+				DDB2AE6D290BB3F800A34129 /* XCRemoteSwiftPackageReference "Veritrans-ios-sdk" */,
 			);
 			productRefGroup = DD1B64B228B8946C00742EFE /* Products */;
 			projectDirPath = "";
@@ -317,7 +317,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G92YEQF267;
+				DEVELOPMENT_TEAM = A566REV8NE;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MidtransSpmSample/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -345,7 +345,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G92YEQF267;
+				DEVELOPMENT_TEAM = A566REV8NE;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MidtransSpmSample/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -390,20 +390,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		DDA8D79228D9C32400655CCF /* XCRemoteSwiftPackageReference "Veritrans-ios-sdk" */ = {
+		DDB2AE6D290BB3F800A34129 /* XCRemoteSwiftPackageReference "Veritrans-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/veritrans/Veritrans-ios-sdk";
 			requirement = {
-				branch = spm;
+				branch = "fix/xcode14-archive-error";
 				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		DDA8D79328D9C32400655CCF /* MidtransKit */ = {
+		DDB2AE6E290BB3F800A34129 /* MidtransKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DDA8D79228D9C32400655CCF /* XCRemoteSwiftPackageReference "Veritrans-ios-sdk" */;
+			package = DDB2AE6D290BB3F800A34129 /* XCRemoteSwiftPackageReference "Veritrans-ios-sdk" */;
 			productName = MidtransKit;
 		};
 /* End XCSwiftPackageProductDependency section */
