@@ -16,6 +16,7 @@ import com.midtrans.sdk.corekit.core.UIKitCustomSetting;
 import com.midtrans.sdk.corekit.core.themes.CustomColorTheme;
 import com.midtrans.sdk.corekit.models.CustomerDetails;
 import com.midtrans.sdk.corekit.models.ItemDetails;
+import com.midtrans.sdk.corekit.models.snap.CreditCard;
 import com.midtrans.sdk.corekit.models.snap.Gopay;
 import com.midtrans.sdk.corekit.models.snap.Shopeepay;
 import com.midtrans.sdk.corekit.models.snap.TransactionResult;
@@ -72,7 +73,6 @@ public class MainActivity extends AppCompatActivity implements TransactionFinish
                 .setContext(this) // context is mandatory
                 .setTransactionFinishedCallback(this) // set transaction finish callback (sdk callback)
                 .setMerchantBaseUrl(base_url)//set merchant url
-//                .setUIkitCustomSetting(uiKitCustomSetting())
                 .enableLog(true) // enable sdk log
                 .setColorTheme(new CustomColorTheme("#FFE51255", "#B61548", "#FFE51255")) // will replace theme on snap theme on MAP
                 .setLanguage("en");
@@ -190,6 +190,7 @@ public class MainActivity extends AppCompatActivity implements TransactionFinish
 
     private void uiKitCustomSetting() {
         UIKitCustomSetting uIKitCustomSetting = new UIKitCustomSetting();
-        uIKitCustomSetting.setShowPaymentStatus(true);
+        uIKitCustomSetting.setSaveCardChecked(true);
+        MidtransSDK.getInstance().setUiKitCustomSetting(uIKitCustomSetting);
     }
 }

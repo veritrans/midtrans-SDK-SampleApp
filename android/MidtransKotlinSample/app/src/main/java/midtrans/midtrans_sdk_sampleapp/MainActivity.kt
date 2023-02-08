@@ -144,6 +144,7 @@ class MainActivity : AppCompatActivity(), TransactionFinishedCallback {
 
     private fun uiKitCustomSetting() {
         val uIKitCustomSetting = UIKitCustomSetting()
-        uIKitCustomSetting.setShowPaymentStatus(true)
+        uIKitCustomSetting.setSaveCardChecked(true)
+        MidtransSDK.getInstance().setUiKitCustomSetting(uIKitCustomSetting)
     }
 }
