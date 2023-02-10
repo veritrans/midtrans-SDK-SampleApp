@@ -61,10 +61,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mbinding: ActivityMainBinding
 
-    private var transactionDetails = SnapTransactionDetail(
-        orderId = UUID.randomUUID().toString(),
-        grossAmount = 36500.0
-    )
     private var customerDetails = CustomerDetails(
         firstName = "user fullname",
         customerIdentifier = "mail@mail.com",
@@ -73,6 +69,12 @@ class MainActivity : AppCompatActivity() {
     )
     private var itemDetails = listOf(ItemDetails("test-01", 36500.0, 1, "test01"))
 
+    private fun initTransactionDetails() : SnapTransactionDetail {
+        return SnapTransactionDetail(
+            orderId = UUID.randomUUID().toString(),
+            grossAmount = 36500.0
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,7 +86,7 @@ class MainActivity : AppCompatActivity() {
             UiKitApi.getDefaultInstance().startPaymentUiFlow(
                 activity = this@MainActivity,
                 launcher = launcher,
-                transactionDetails = transactionDetails,
+                transactionDetails = initTransactionDetails(),
                 customerDetails = customerDetails,
                 itemDetails = itemDetails
             )
@@ -93,7 +95,7 @@ class MainActivity : AppCompatActivity() {
             UiKitApi.getDefaultInstance().startPaymentUiFlow(
                 activity = this@MainActivity,
                 launcher = launcher,
-                transactionDetails = transactionDetails,
+                transactionDetails = initTransactionDetails(),
                 customerDetails = customerDetails,
                 itemDetails = itemDetails,
                 paymentMethod = PaymentMethod.CREDIT_CARD
@@ -103,7 +105,7 @@ class MainActivity : AppCompatActivity() {
             UiKitApi.getDefaultInstance().startPaymentUiFlow(
                 activity = this@MainActivity,
                 launcher = launcher,
-                transactionDetails = transactionDetails,
+                transactionDetails = initTransactionDetails(),
                 customerDetails = customerDetails,
                 itemDetails = itemDetails,
                 paymentMethod = PaymentMethod.BANK_TRANSFER_BCA
@@ -113,7 +115,7 @@ class MainActivity : AppCompatActivity() {
             UiKitApi.getDefaultInstance().startPaymentUiFlow(
                 activity = this@MainActivity,
                 launcher = launcher,
-                transactionDetails = transactionDetails,
+                transactionDetails = initTransactionDetails(),
                 customerDetails = customerDetails,
                 itemDetails = itemDetails,
                 paymentMethod = PaymentMethod.BANK_TRANSFER_BNI
@@ -123,7 +125,7 @@ class MainActivity : AppCompatActivity() {
             UiKitApi.getDefaultInstance().startPaymentUiFlow(
                 activity = this@MainActivity,
                 launcher = launcher,
-                transactionDetails = transactionDetails,
+                transactionDetails = initTransactionDetails(),
                 customerDetails = customerDetails,
                 itemDetails = itemDetails,
                 paymentMethod = PaymentMethod.BANK_TRANSFER_MANDIRI
@@ -133,7 +135,7 @@ class MainActivity : AppCompatActivity() {
             UiKitApi.getDefaultInstance().startPaymentUiFlow(
                 activity = this@MainActivity,
                 launcher = launcher,
-                transactionDetails = transactionDetails,
+                transactionDetails = initTransactionDetails(),
                 customerDetails = customerDetails,
                 itemDetails = itemDetails,
                 paymentMethod = PaymentMethod.BANK_TRANSFER_PERMATA
@@ -143,7 +145,7 @@ class MainActivity : AppCompatActivity() {
             UiKitApi.getDefaultInstance().startPaymentUiFlow(
                 activity = this@MainActivity,
                 launcher = launcher,
-                transactionDetails = transactionDetails,
+                transactionDetails = initTransactionDetails(),
                 customerDetails = customerDetails,
                 itemDetails = itemDetails,
                 paymentMethod = PaymentMethod.BANK_TRANSFER_OTHER
@@ -162,7 +164,7 @@ class MainActivity : AppCompatActivity() {
         UiKitApi.Builder()
             .withContext(this.applicationContext)
             .withMerchantUrl("https://snap-merchant-server.herokuapp.com/api/")
-            .withMerchantClientKey("SB-Mid-client-hOWJXiCCDRvT0RGr")
+            .withMerchantClientKey("d4b273bc-201c-42ae-8a35-c9bf48c1152b")
             .enableLog(true)
             .withColorTheme(CustomColorTheme("#FFE51255", "#B61548", "#FFE51255"))
             .build()
