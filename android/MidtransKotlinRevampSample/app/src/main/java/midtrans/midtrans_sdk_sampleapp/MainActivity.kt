@@ -164,7 +164,7 @@ class MainActivity : AppCompatActivity() {
         UiKitApi.Builder()
             .withContext(this.applicationContext)
             .withMerchantUrl("https://snap-merchant-server.herokuapp.com/api/")
-            .withMerchantClientKey("d4b273bc-201c-42ae-8a35-c9bf48c1152b")
+            .withMerchantClientKey("SB-Mid-client-hOWJXiCCDRvT0RGr")
             .enableLog(true)
             .withColorTheme(CustomColorTheme("#FFE51255", "#B61548", "#FFE51255"))
             .build()
