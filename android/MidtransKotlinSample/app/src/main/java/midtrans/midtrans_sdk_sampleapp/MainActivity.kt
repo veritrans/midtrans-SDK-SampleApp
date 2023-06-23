@@ -6,15 +6,14 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.midtrans.sdk.corekit.callback.CardRegistrationCallback
 import com.midtrans.sdk.corekit.callback.TransactionFinishedCallback
 import com.midtrans.sdk.corekit.core.MidtransSDK
 import com.midtrans.sdk.corekit.core.PaymentMethod
 import com.midtrans.sdk.corekit.core.TransactionRequest
 import com.midtrans.sdk.corekit.core.UIKitCustomSetting
 import com.midtrans.sdk.corekit.core.themes.CustomColorTheme
-import com.midtrans.sdk.corekit.models.CardRegistrationResponse
 import com.midtrans.sdk.corekit.models.CustomerDetails
+import com.midtrans.sdk.corekit.models.ItemDetails
 import com.midtrans.sdk.corekit.models.snap.Gopay
 import com.midtrans.sdk.corekit.models.snap.Shopeepay
 import com.midtrans.sdk.corekit.models.snap.TransactionResult
@@ -45,6 +44,11 @@ class MainActivity : AppCompatActivity(), TransactionFinishedCallback {
         transactionRequestNew.customerDetails = initCustomerDetails()
         transactionRequestNew.gopay = Gopay("mysamplesdk:://midtrans")
         transactionRequestNew.shopeepay = Shopeepay("mysamplesdk:://midtrans")
+
+        val itemDetails1 = ItemDetails("ITEM_ID_1", 36500.0, 1, "ITEM_NAME_1")
+        val itemDetailsList = ArrayList<ItemDetails>()
+        itemDetailsList.add(itemDetails1)
+        transactionRequestNew.itemDetails = itemDetailsList
         return transactionRequestNew
     }
 
@@ -66,11 +70,11 @@ class MainActivity : AppCompatActivity(), TransactionFinishedCallback {
                 .setContext(this) // context is mandatory
                 .setTransactionFinishedCallback(this) // set transaction finish callback (sdk callback)
                 .setMerchantBaseUrl(baseUrl) //set merchant url
-                .setUIkitCustomSetting(uiKitCustomSetting())
                 .enableLog(true) // enable sdk log
                 .setColorTheme(CustomColorTheme("#FFE51255", "#B61548", "#FFE51255")) // will replace theme on snap theme on MAP
                 .setLanguage("en")
         sdkUIFlowBuilder.buildSDK()
+        uiKitCustomSetting()
     }
 
     override fun onTransactionFinished(result: TransactionResult) {
@@ -80,7 +84,6 @@ class MainActivity : AppCompatActivity(), TransactionFinishedCallback {
                 TransactionResult.STATUS_PENDING -> Toast.makeText(this, "Transaction Pending. ID: " + result.response.transactionId, Toast.LENGTH_LONG).show()
                 TransactionResult.STATUS_FAILED -> Toast.makeText(this, "Transaction Failed. ID: " + result.response.transactionId.toString() + ". Message: " + result.response.statusMessage, Toast.LENGTH_LONG).show()
             }
-            result.response.validationMessages
         } else if (result.isTransactionCanceled) {
             Toast.makeText(this, "Transaction Canceled", Toast.LENGTH_LONG).show()
         } else {
@@ -111,17 +114,7 @@ class MainActivity : AppCompatActivity(), TransactionFinishedCallback {
         }
         buttonDirectCreditCard!!.setOnClickListener {
             MidtransSDK.getInstance().transactionRequest = initTransactionRequest()
-            MidtransSDK.getInstance().UiCardRegistration(this@MainActivity, object : CardRegistrationCallback {
-                override fun onSuccess(cardRegistrationResponse: CardRegistrationResponse?) {
-                    Toast.makeText(this@MainActivity, "register card token success", Toast.LENGTH_SHORT).show()
-                }
-
-                override fun onFailure(cardRegistrationResponse: CardRegistrationResponse?, s: String?) {
-                    Toast.makeText(this@MainActivity, "register card token Failed", Toast.LENGTH_SHORT).show()
-                }
-
-                override fun onError(throwable: Throwable?) {}
-            })
+            MidtransSDK.getInstance().startPaymentUiFlow(this@MainActivity, PaymentMethod.CREDIT_CARD)
         }
         buttonDirectBcaVa!!.setOnClickListener {
             MidtransSDK.getInstance().transactionRequest = initTransactionRequest()
@@ -149,10 +142,9 @@ class MainActivity : AppCompatActivity(), TransactionFinishedCallback {
         }
     }
 
-    private fun uiKitCustomSetting(): UIKitCustomSetting {
+    private fun uiKitCustomSetting() {
         val uIKitCustomSetting = UIKitCustomSetting()
-        uIKitCustomSetting.isSkipCustomerDetailsPages = true
-        uIKitCustomSetting.isShowPaymentStatus = true
-        return uIKitCustomSetting
+        uIKitCustomSetting.setSaveCardChecked(true)
+        MidtransSDK.getInstance().setUiKitCustomSetting(uIKitCustomSetting)
     }
 }
