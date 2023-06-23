@@ -9,4 +9,4 @@ Currently is using ios midtrans sdk v 1.18.1.
 For more details about ios midtrans sdk you can go here https://github.com/veritrans/Veritrans-ios-sdk
 
 
-Refer to https://mobile-docs.midtrans.com/ for detailed documentation of Midtrans SDK
+Refer to https://docs.midtrans.com/reference/mobile-sdk-overview for detailed documentation of Midtrans SDK
